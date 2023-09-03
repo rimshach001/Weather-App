@@ -1,0 +1,1 @@
+export const selectWeatherData = (state) => state.data.api;
