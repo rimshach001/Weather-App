@@ -1,22 +1,3 @@
-// import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-// import FetchData from '../../helpers/api'
-// import { WeatherApi } from '../Action/Action';
-
-// function* getapi(action) {
-//     try {
-//       const data = yield call(FetchData)
-//       yield put(WeatherApi(data))
-//     } catch (e) {
-//       console.log(e);
-//     }
-//   }
-//   function* mySaga() {
-//     yield takeLatest('WeatherApi', getapi)
-//   }
-
-//   export default mySaga
-
-
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { WeatherApi, WeatherError, weatherapi, weathererror } from '../Action/Action';
 import axios from 'axios';
@@ -35,10 +16,9 @@ function* fetchWeatherData(action) {
 }
 
 function getAPI(city) {
-    // const cityplz = useSelector((state) => state.data.city)
-    // console.log(cityplz, "hojjjaaa");
     const apiKey = 'ca8143791cc67420b2392536c97432eb';
     const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
+    console.log(apiUrl,"url");
     return axios.get(apiUrl);
 }
 

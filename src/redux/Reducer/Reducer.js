@@ -17,7 +17,9 @@ export default function Reducer(state = initialState, action) {
                 celsiusIs: !state.celsiusIs,
             };
         case City:
-            return { ...state, city: action.payload };
+            return { 
+                ...state,
+                 city: action.payload };
 
         case WeatherApi:
             return {

@@ -18,9 +18,11 @@ const WeatherDayList = () => {
     const today = new Date();
     const todayDateString = today.toDateString();
     const celsiusRedux = useSelector((state) => state.data.celsiusIs)
+    const Data = useSelector((state) => state.data.api);
     useEffect(() => {
         CheckWeather()
     }, [data])
+
     const CheckWeather = async () => {
         try {
             const Info = await FetchData()
