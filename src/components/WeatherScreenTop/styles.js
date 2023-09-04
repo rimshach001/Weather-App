@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     areaText:{
         color:'white',
         fontSize:wp(10),
-        marginTop:wp(7),
+        marginTop:wp(4),
         fontWeight:'bold',
         marginHorizontal:wp(3)
         // justifyContent:'flex-end'
@@ -25,7 +25,11 @@ const styles = StyleSheet.create({
         height:wp(8),
         width:wp(8),
         // backgroundColor:'red',
-        marginTop:wp(10),
+        marginTop:wp(6),
+        // borderRadius:wp(3),
+        // borderColor:'white',
+        // borderWidth:wp(0.3),
+        // padding:wp(3)
         
     }
     

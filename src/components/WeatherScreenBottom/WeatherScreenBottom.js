@@ -14,37 +14,44 @@ const WeatherScreenBottom = () => {
     const [fahrenheitMax, setfahrenheitMax] = useState()
     const [fahrenheitMin, setfahrenheitMin] = useState()
     const [weatherType, setWeatherType] = useState()
+    const Data = useSelector((state) => state.data.api);
     
   const celsiusRedux = useSelector((state) => state.data.celsiusIs)
     useEffect(() => {
         CheckWeather()
-    }, [])
+    }, [weatherType,Data])
+    // useEffect(() => {
+    //   setAreaName(Data.data.city.name)
+    //   console.log(Data.data);
+    // }, [weather,Data]);
+  
     const CheckWeather = async () => {
         try {
-            const Info = await FetchData()
+            // const Info = await FetchData()
             // const Info= useSelector((state)=>state.data.data.weather)
-            setWeatherType(Info.list[0].weather[0].main)
-            const celsiusMax = (Info.list[0].main.temp_max - 273.15);
+            setWeatherType(Data.data.list[0].weather[0].main)
+            console.log(weatherType,"now types");
+            const celsiusMax = (Data.data.list[0].main.temp_max - 273.15);
             const celsiusMaxApprox = celsiusMax.toFixed(0)
             setCelsiusMax(celsiusMaxApprox)
 
-            const celsiusMin = (Info.list[0].main.temp_min - 273.15);
+            const celsiusMin = (Data.data.list[0].main.temp_min - 273.15);
             const celsiusMinApprox = celsiusMin.toFixed(0)
             setCelsiusMin(celsiusMinApprox)
 
-            const celsius = (Info.list[0].main.temp - 273.15);
+            const celsius = (Data.data.list[0].main.temp - 273.15);
             const celsiusApprox = celsius.toFixed(0)
             setCelsius(celsiusApprox)
 
-            const fahrenMax = (Info.list[0].main.temp_max - 273.15 *0.55 +32);
+            const fahrenMax = (Data.data.list[0].main.temp_max - 273.15 *0.55 +32);
             const fahrenMaxApprox = fahrenMax.toFixed(0)
             setfahrenheitMax(fahrenMaxApprox)
 
-            const fahrenMin = (Info.list[0].main.temp_min - 273.15 *0.55 +32);
+            const fahrenMin = (Data.data.list[0].main.temp_min - 273.15 *0.55 +32);
             const fahrenMinApprox = fahrenMin.toFixed(0)
             setfahrenheitMin(fahrenMinApprox)
 
-            const fahren = (Info.list[0].main.temp - 273.15 *0.55 +32);
+            const fahren = (Data.data.list[0].main.temp - 273.15 *0.55 +32);
             const fahrenApprox = fahren.toFixed(0)
             setfahrenheit(fahrenApprox)
         }

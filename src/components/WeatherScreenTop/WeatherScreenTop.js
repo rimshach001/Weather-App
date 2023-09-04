@@ -15,15 +15,17 @@ const WeatherScreenTop = () => {
   console.log(celsiusRedux, "-----");
   // const fahrenheitRedux = useSelector((state) => state.data.data.fahrenheit)
   const dispatch = useDispatch()
-  const cityName = useSelector((state) => state.data.city)
-  console.log(cityName,"---------city-------");
+  // const cityName = useSelector((state) => state.data.city)
+  // console.log(cityName,"---------city-------");
+  const Data = useSelector((state)=>state.data.api);
   useEffect(() => {
     CheckWeather()
-  }, [])
+  }, [areaName,Data])
   const CheckWeather = async () => {
     try {
-      const Info = await FetchData()
-      setAreaName(Info.city.name)
+      // const Info = await FetchData()
+      setAreaName(Data.data.city.name)
+      console.log(Data.data.city.name,"data show");
     }
     catch (error) {
       console.log(error, " error")
@@ -34,7 +36,6 @@ const WeatherScreenTop = () => {
     dispatch(celsius())
     // setData(celsiusRedux)
   })
-  // const Data = useSelector((state)=>state.data.api);
   // setAreaName(Data.data.city.name)
   // useEffect(() => {
     

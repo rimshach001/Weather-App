@@ -6,7 +6,7 @@ import {
 const styles = StyleSheet.create({
    
     center:{
-        flex:0.3,
+        flex:0.25,
         height: '100%',
         alignItems:'center',
         justifyContent:'center',
@@ -17,8 +17,8 @@ const styles = StyleSheet.create({
     pic:{
         // backgroundColor:'grey',
         // resizeMode:'contain',
-        height:wp(60),
-        width:wp(60),
+        height:wp(50),
+        width:wp(50),
     }
 })
 export default styles

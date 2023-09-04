@@ -1,9 +1,10 @@
 const images={
 
     clear:require('./cloudy-day.png'),
-    clouds:require('./cloudy.png'),
+    clouds:require('./clouds.png'),
     sunny:require('./sunny.png'),
     celsius:require('./celsius.png'),
-    fahrenheit:require('./fahrenheit.png')
+    fahrenheit:require('./fahrenheit.png'),
+    search:require('./search.png')
 }
 export default images

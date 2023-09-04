@@ -40,12 +40,16 @@
 // }
 // export default SearchCity
 
-
+import {
+    widthPercentageToDP as wp,
+    heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button, TouchableOpacity, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { city } from '../../redux/Action/Action'
 import { useDispatch } from 'react-redux';
+import images from '../../assets/images/images';
 function SearchCity() {
     const [cityName, setCityName] = useState('');
     const dispatch = useDispatch()
@@ -54,14 +58,25 @@ function SearchCity() {
     };
 
     return (
-        <View>
-            <TextInput
+        <View style={{ flexDirection: 'row', flex: 0.05, marginTop: wp(2) }}>
+            {/* <TextInput style={{ borderWidth: wp(0.5), borderColor: 'white', borderRadius: wp(2), paddingHorizontal: wp(3), width: wp(40) }}
                 placeholder="Enter city name"
                 value={cityName}
                 onChangeText={setCityName}
-            />
-            <Button title="Search" onPress={handleSearch} />
-
+            /> */}
+                <TextInput style={{color:'white', borderWidth: wp(0.5), borderColor: 'white', borderRadius: wp(2), 
+                paddingHorizontal: wp(3), width: wp(60) }}
+                    placeholder="Enter city name"
+                    value={cityName}
+                    onChangeText={setCityName}
+                />
+            {/* <Button
+            title='okk'
+                onPress={handleSearch} /> */}
+            
+            <TouchableOpacity  onPress={handleSearch}>
+                <Image source={images.search} style={{height:wp(7), width:wp(7), marginHorizontal:wp(2),alignItems:'center',justifyContent:'center', marginTop:wp(1)}}/>
+            </TouchableOpacity>
         </View>
     );
 }

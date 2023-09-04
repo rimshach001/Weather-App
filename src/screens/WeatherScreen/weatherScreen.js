@@ -9,7 +9,9 @@ import WeatherScreenCenter from '../../components/WeatherScreenCenter/WeatherScr
 import WeatherScreenBottom from '../../components/WeatherScreenBottom/WeatherScreenBottom'
 import SearchCity from '../../components/SearchCity/SearchCity'
 import { selectWeatherData } from '../../redux/Selector/Selector'
+import {LinearGradient} from 'expo-linear-gradient';
   import { useSelector } from 'react-redux'
+import WeatherDayList from '../../components/WeatherDaysList/WeatherDayList'
 const WeatherScreen = () => {
   const [weather, setweather] = useState()
   // const [Temp, setTemp] = useState()
@@ -42,18 +44,25 @@ const WeatherScreen = () => {
     const Data = useSelector((state) => state.data.api);
     useEffect(() => {
       setweather(Data)
-      console.log(Data.data.city);
-    }, [weather,Data]);
+      // console.log(Data.data.city.name,"data show");
+    }, [weather]);
   
 
   return (
-    <View >
+    <LinearGradient
+    colors={['#000000', '#ffffff',"#72C6D5"]}
+    start={{ x: 0, y: 2.5}} // Gradient start point
+    end={{ x: 0.3, y: 0.3 }}   // Gradient end point
+    style={{ flex: 1, }}
+>
+
       {weather && (
         <View style={styles.container}>
           <SearchCity/>
           <WeatherScreenTop />
           <WeatherScreenCenter/>
-          <WeatherScreenBottom/>
+        <WeatherScreenBottom/>
+        {/* <WeatherDayList/> */}
           {/* <View style={styles.top}>
             <Text style={styles.areaText}>{areaName}</Text>
           </View> */}
@@ -63,11 +72,11 @@ const WeatherScreen = () => {
           {/* <View style={styles.bottom}>
             <View>
               <Text style={{ fontSize: 10 }}>{celsius}</Text>
-            </View>
-          </View> */}
+              </View>
+            </View> */}
         </View>
       )}
-    </View>
+    </LinearGradient>
   )
 }
 
