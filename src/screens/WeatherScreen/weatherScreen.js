@@ -9,9 +9,10 @@ import WeatherScreenCenter from '../../components/WeatherScreenCenter/WeatherScr
 import WeatherScreenBottom from '../../components/WeatherScreenBottom/WeatherScreenBottom'
 import SearchCity from '../../components/SearchCity/SearchCity'
 import { selectWeatherData } from '../../redux/Selector/Selector'
-import {LinearGradient} from 'expo-linear-gradient';
-  import { useSelector } from 'react-redux'
+import { LinearGradient } from 'expo-linear-gradient';
+import { useSelector, useDispatch } from 'react-redux'
 import WeatherDayList from '../../components/WeatherDaysList/WeatherDayList'
+import { city, weatherapi } from '../../redux/Action/Action'
 const WeatherScreen = () => {
   const [weather, setweather] = useState()
   // const [Temp, setTemp] = useState()
@@ -39,30 +40,32 @@ const WeatherScreen = () => {
   //     console.log(error, " error")
   //   }
   // }
-  
- 
-    const Data = useSelector((state) => state.data.api);
-    useEffect(() => {
-      setweather(Data)
-      // console.log(Data.data.city.name,"data show");
-    }, [weather]);
-  
+
+
+  const Data = useSelector((state) => state.data.api);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(dispatch({ type: 'City', payload: 'lahore' }))
+    setweather(Data)
+    console.log(Data,);
+  }, [weather]);
+
 
   return (
     <LinearGradient
-    colors={['#000000', '#ffffff',"#72C6D5"]}
-    start={{ x: 0, y: 2.5}} // Gradient start point
-    end={{ x: 0.3, y: 0.3 }}   // Gradient end point
-    style={{ flex: 1, }}
->
+      colors={['#000000', '#ffffff', "#72C6D5"]}
+      start={{ x: 0, y: 2.5 }} 
+      end={{ x: 0.3, y: 0.3 }}   
+      style={{ flex: 1, }}
+    >
 
       {weather && (
         <View style={styles.container}>
-          <SearchCity/>
+          <SearchCity />
           <WeatherScreenTop />
-          <WeatherScreenCenter/>
-        <WeatherScreenBottom/>
-        {/* <WeatherDayList/> */}
+          <WeatherScreenCenter />
+          <WeatherScreenBottom />
+          {/* <WeatherDayList/> */}
           {/* <View style={styles.top}>
             <Text style={styles.areaText}>{areaName}</Text>
           </View> */}

@@ -73,7 +73,7 @@ const WeatherScreenBottom = () => {
                 </View>
             </View>
             <View style={{flex:0.8}}>
-            <WeatherDayList/>
+            {/* <WeatherDayList/> */}
             </View>
             
         </View>

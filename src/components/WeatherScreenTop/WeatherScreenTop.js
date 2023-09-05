@@ -25,7 +25,7 @@ const WeatherScreenTop = () => {
     try {
       // const Info = await FetchData()
       setAreaName(Data.data.city.name)
-      console.log(Data.data.city.name,"data show");
+      console.log(Data.data.list[0].weather[0].main,"data show");
     }
     catch (error) {
       console.log(error, " error")
