@@ -38,9 +38,9 @@ const WeatherScreenCenter = () => {
 
     const Data = useSelector((state) => state.data.api);
     useEffect(() => {
-        console.log("ppp", Data.data.list[0].weather[0].main);
-        setWeatherType(Data.data.list[0].weather[0].main)
-        console.log(Data.data.list[0].weather[0].main, "--weather type--")
+        // console.log("ppp", Data?.data?.list[0]?.weather[0]?.main);
+        setWeatherType(Data?.data?.list[0]?.weather[0]?.main)
+        console.log(Data?.data?.list[0]?.weather[0]?.main, "--weather type--")
         if (weatherType == 'Clear') {
             console.log(weatherType);
             setClearType(true)

@@ -21,20 +21,20 @@ const WeatherDayList = () => {
     const Data = useSelector((state) => state.data.api);
     useEffect(() => {
         CheckWeather()
-    }, [data])
-
+    }, [Data,data,dailyWeather,todayWeather])
+    
     const CheckWeather = async () => {
         try {
-            const Info = await FetchData()
+            // const Info = await FetchData()
             // const Info= useSelector((state)=>state.data.data.weather)
-            setData(Info.list)
-            // console.log(Info.list[0].weather);
+            setData(Data?.data?.list)
+            console.log(Data?.data?.list, "show lists");
 
-            const Data = daysTimes(Info.list);
+            const Data1 = daysTimes(Data?.data?.list);
             // console.log(Data, "---details----");
-            setDailyWeather(Data);
+            setDailyWeather(Data1);
 
-            const TodayData = todayData(Info.list)
+            const TodayData = todayData(Data?.data?.list)
             setTodayWeather(TodayData)
             // console.log(todayData(Info.list), "aj kaaaa")
         }
@@ -127,9 +127,9 @@ const WeatherDayList = () => {
 
             <View style={{ flex: 0.5 }}>
                 <Image style={styles.picsList}
-                    source={data[index].weather[0].main == 'Clear' ? images.clear
-                        : data[index].weather[0].main == 'Clouds' ? images.clouds
-                            : data[index].weather[0].main == 'Sunny' ? images.sunny : data[index].weather[0].main}
+                    source={data[index]?.weather[0]?.main == 'Clear' ? images.clear
+                        : data[index]?.weather[0]?.main == 'Clouds' ? images.clouds
+                            : data[index]?.weather[0]?.main == 'Sunny' ? images.sunny : data[index]?.weather[0]?.main}
                 />
             </View>
             <View style={{ flex: 0.25, alignItems: 'center' }}>
@@ -152,6 +152,7 @@ const WeatherDayList = () => {
             <Text style={{fontSize:wp(5), color:'white', marginLeft:wp(2), fontWeight:'bold'}}>Today</Text>
             <FlatList
                 horizontal
+                showsHorizontalScrollIndicator={false}
                 data={todayWeather[todayDateString]}
                 renderItem=
                 {renderItem}
@@ -173,9 +174,9 @@ const WeatherDayList = () => {
                         // onPress={() => setSelecetedItem(item)}
                         >
                             <Image style={styles.picsList}
-                                source={data[index].weather[0].main == 'Clear' ? images.clear
-                                    : data[index].weather[0].main == 'Clouds' ? images.clouds
-                                        : data[index].weather[0].main == 'Sunny' ? images.sunny : images.sunny}
+                                source={data[index]?.weather[0]?.main == 'Clear' ? images.clear
+                                    : data[index]?.weather[0]?.main == 'Clouds' ? images.clouds
+                                        : data[index]?.weather[0]?.main == 'Sunny' ? images.sunny : images.sunny}
                             />
                             <Text style={styles.dayNames}>{onlyDayName(item[0])}</Text>
                             <View style={{ flexDirection: 'row' }}>

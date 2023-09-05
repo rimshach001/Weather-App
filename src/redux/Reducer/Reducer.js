@@ -2,8 +2,8 @@ import { Fahrenheit, Celsius, City, WeatherApi, WeatherError } from "../Action/A
 
 const initialState = {
     celsiusIs: true,
-    city: 'lahore',
-    api: `https://api.openweathermap.org/data/2.5/forecast?q=lahore&appid=8a6761011c3f008cac5812fafc872954`,
+    city: '',
+    api:{},
     error: null
 
     // fahrenheitIs:false

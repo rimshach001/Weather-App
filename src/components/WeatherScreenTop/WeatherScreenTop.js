@@ -24,11 +24,11 @@ const WeatherScreenTop = () => {
   const CheckWeather = async () => {
     try {
       // const Info = await FetchData()
-      setAreaName(Data.data.city.name)
-      console.log(Data.data.list[0].weather[0].main,"data show");
+      setAreaName(Data?.data?.city?.name)
+      // console.log(Data.data.list[0].weather[0].main,"data show");
     }
     catch (error) {
-      console.log(error, " error")
+      console.log(error, "-- error")
     }
   }
   const handleBtn = (() => {

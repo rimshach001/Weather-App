@@ -45,10 +45,10 @@ const WeatherScreen = () => {
   const Data = useSelector((state) => state.data.api);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(dispatch({ type: 'City', payload: 'lahore' }))
+    dispatch({ type: 'City', payload: 'lahore' })
     setweather(Data)
-    console.log(Data,);
-  }, [weather]);
+    // console.log(Data.data.city.name,"kk");
+  }, []);
 
 
   return (

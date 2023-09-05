@@ -9,8 +9,8 @@ function* fetchWeatherData(action) {
     try {
         console.log(action,"okkk")
         const data = yield call(getAPI, action.payload);
-        console.log(data.data.list[0], "---data of responseee---");
-        console.log("show city again 1")
+        // console.log(data.data.list[0], "---data of responseee---");
+        console.log("show city again 1",data.data.city.name)
         yield put(weatherapi(data));
     } catch (error) {
         console.log(error)
