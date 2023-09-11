@@ -1,20 +1,21 @@
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import styles from './styles'
 import images from '../../assets/images/images'
 import FetchData from '../../helpers/api'
-import WeatherScreenTop from '../../components/WeatherScreenTop/WeatherScreenTop'
-import WeatherScreenCenter from '../../components/WeatherScreenCenter/WeatherScreenCenter'
-import WeatherScreenBottom from '../../components/WeatherScreenBottom/WeatherScreenBottom'
-import SearchCity from '../../components/SearchCity/SearchCity'
+import WeatherScreenTop from '../../components/WeatherScreenTop'
+import WeatherScreenCenter from '../../components/WeatherScreenCenter'
+import WeatherScreenBottom from '../../components/WeatherScreenBottom'
+import SearchCity from '../../components/SearchCity'
 import { selectWeatherData } from '../../redux/Selector/Selector'
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSelector, useDispatch } from 'react-redux'
-import WeatherDayList from '../../components/WeatherDaysList/WeatherDayList'
+import WeatherDayList from '../../components/WeatherDaysList'
 import { city, weatherapi } from '../../redux/Action/Action'
-const WeatherScreen = () => {
-  const [weather, setweather] = useState()
+import Color from '../../theme/Color'
+const WeatherScreen = (props) => {
+  // const [weather, setweather] = useState()
   // const [Temp, setTemp] = useState()
   // const [celsius, setCelsius] = useState()
   // const [areaName, setAreaName] = useState()
@@ -43,29 +44,36 @@ const WeatherScreen = () => {
 
 
   const Data = useSelector((state) => state.data.api);
+
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch({ type: 'City', payload: 'lahore' })
-    setweather(Data)
+    // dispatch({ type: 'City', payload: 'lahore' })
+    dispatch(city("lahore"))
+    // setweather(Data)
+    console.log("heelo");
     // console.log(Data.data.city.name,"kk");
   }, []);
 
 
   return (
     <LinearGradient
-      colors={['#000000', '#ffffff', "#72C6D5"]}
-      start={{ x: 0, y: 2.5 }} 
-      end={{ x: 0.3, y: 0.3 }}   
+      colors={[Color.white, Color.white, Color.lightpurple]}
+      start={{ x: 0, y: 5 }} 
+      end={{ x: 0.1, y: 0.1 }}   
       style={{ flex: 1, }}
     >
 
-      {weather && (
+      {Data && (
         <View style={styles.container}>
-          <SearchCity />
-          <WeatherScreenTop />
+          {/* <View style={{ justifyContent: 'center',
+        alignItems: 'center',}}> */}
+          
+          {/* <SearchCity /> */}
+          <WeatherScreenTop  navigation={props.navigation} />
           <WeatherScreenCenter />
           <WeatherScreenBottom />
           {/* <WeatherDayList/> */}
+        {/* </View> */}
           {/* <View style={styles.top}>
             <Text style={styles.areaText}>{areaName}</Text>
           </View> */}

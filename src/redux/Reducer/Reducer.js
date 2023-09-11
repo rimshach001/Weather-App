@@ -1,11 +1,12 @@
-import { Fahrenheit, Celsius, City, WeatherApi, WeatherError } from "../Action/Action";
+import { Fahrenheit, Celsius, City, WeatherApi, WeatherError, FavCityName, DelFavCity, Fav } from "../Action/Action";
 
 const initialState = {
     celsiusIs: true,
     city: '',
-    api:{},
-    error: null
-
+    api: {},
+    error: null,
+    favCities: [],
+    favorite: false
     // fahrenheitIs:false
 }
 
@@ -17,25 +18,40 @@ export default function Reducer(state = initialState, action) {
                 celsiusIs: !state.celsiusIs,
             };
         case City:
-            return { 
+            return {
                 ...state,
-                 city: action.payload };
-
+                city: action.payload
+            };
         case WeatherApi:
             return {
                 ...state,
                 api: action.payload,
-                // error: null
             };
         case WeatherError:
             return {
                 ...state,
-                // api: null,
                 error: action.payload
             };
+        case FavCityName:
+            const newData = [...state.favCities, action.payload];
+            return {
+                ...state,
+                favCities: newData,
+            };
 
-        // ...state,
-        // fahrenheitIs: !state.fahrenheitIs
+        case DelFavCity:
+            const updatedFavCities = [...state.favCities];
+            updatedFavCities.splice(action.payload, 1);
+            return {
+                ...state,
+                favCities: updatedFavCities,
+            };
+
+        case Fav:
+            return {
+                ...state,
+                favorite: action.payload,
+            };
 
         default:
             return state;

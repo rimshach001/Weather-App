@@ -39,44 +39,65 @@
 //     )
 // }
 // export default SearchCity
-
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity, Image } from 'react-native';
-import { connect } from 'react-redux';
-import { city } from '../../redux/Action/Action'
+import { connect, useSelector } from 'react-redux';
+import { celsius, city,fav } from '../../redux/Action/Action'
 import { useDispatch } from 'react-redux';
 import images from '../../assets/images/images';
-function SearchCity() {
+import Color from '../../theme/Color';
+import styles from './styles'
+function SearchCity({ navigation }) {
     const [cityName, setCityName] = useState('');
     const dispatch = useDispatch()
+    const celsiusRedux = useSelector((state) => state.data.celsiusIs)
     const handleSearch = () => {
-        dispatch(city(cityName));
+        dispatch(city(cityName.toLowerCase()));
+        dispatch(fav(false))
+        navigation.navigate("WeatherScreen")
     };
-
+    const handleBtn = (() => {
+        console.log("okk");
+        dispatch(celsius())
+        // setData(celsiusRedux)
+    })
     return (
-        <View style={{ flexDirection: 'row', flex: 0.05, marginTop: wp(2) }}>
-            {/* <TextInput style={{ borderWidth: wp(0.5), borderColor: 'white', borderRadius: wp(2), paddingHorizontal: wp(3), width: wp(40) }}
-                placeholder="Enter city name"
-                value={cityName}
-                onChangeText={setCityName}
-            /> */}
-                <TextInput style={{color:'white', borderWidth: wp(0.5), borderColor: 'white', borderRadius: wp(2), 
-                paddingHorizontal: wp(3), width: wp(60) }}
-                    placeholder="Enter city name"
-                    value={cityName}
-                    onChangeText={setCityName}
-                />
-            {/* <Button
-            title='okk'
-                onPress={handleSearch} /> */}
-            
-            <TouchableOpacity  onPress={handleSearch}>
-                <Image source={images.search} style={{height:wp(7), width:wp(7), marginHorizontal:wp(2),alignItems:'center',justifyContent:'center', marginTop:wp(1)}}/>
-            </TouchableOpacity>
+        <View >
+            <View style={{
+                borderRadius: wp(2), flexDirection: 'row',
+                paddingHorizontal: wp(3), backgroundColor: Color.mostLightPurple
+            }}>
+                <View>
+                    <TouchableOpacity onPress={handleSearch}>
+                        <Image source={images.search} style={{
+                            height: wp(7), width: wp(7), marginHorizontal: wp(2),
+                            alignItems: 'center', justifyContent: 'center', marginTop: wp(1)
+                        }} />
+                    </TouchableOpacity>
+                </View>
+                <View>
+
+                    <TextInput style={{
+                        color: Color.white,
+                        width: wp(60), height: wp(8)
+                    }}
+                        placeholder="Search for a city"
+                        placeholderTextColor={Color.white}
+                        value={cityName}
+                        onChangeText={setCityName}
+                    />
+                </View>
+            </View>
+            <View>
+
+            </View>
+            {/* <TouchableOpacity onPress={handleBtn}>
+                <Image style={styles.tempPic} source={celsiusRedux ? images.fahrenheit : images.celsius} />
+            </TouchableOpacity> */}
         </View>
     );
 }

@@ -15,7 +15,7 @@
 // store.js
 import { createStore, applyMiddleware,combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import mySaga from '../Saga/Saga';
+import weatherSaga from '../Saga/Saga';
 import Reducer from '../Reducer/Reducer';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -28,7 +28,7 @@ const store = createStore(
   applyMiddleware(sagaMiddleware)
   );
   
-  sagaMiddleware.run(mySaga);
+  sagaMiddleware.run(weatherSaga);
   
 export default store;
 

@@ -5,13 +5,12 @@ import {
 } from 'react-native-responsive-screen';
 const styles = StyleSheet.create({
     container: {
-        marginVertical: wp(6),
+        // marginVertical: wp(6),
         height: hp(100),
         width: wp(100),
-        justifyContent: 'center',
-        alignItems: 'center',
+       
         // backgroundColor: 'lightblue',
-        paddingHorizontal: wp(5)
+        // paddingHorizontal: wp(5)
         // flex:1
     },
     top: {

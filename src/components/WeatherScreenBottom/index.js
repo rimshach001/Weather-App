@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './styles'
 import FetchData from '../../helpers/api'
 import { useSelector, useDispatch } from 'react-redux'
-import WeatherDayList from '../WeatherDaysList/WeatherDayList'
+import WeatherDayList from '../WeatherDaysList'
 const WeatherScreenBottom = () => {
     const [weather, setweather] = useState()
     const [Temp, setTemp] = useState()
@@ -62,7 +62,7 @@ const WeatherScreenBottom = () => {
   
     return (
         <View style={styles.bottom}>
-            <View style={{flex:0.2,flexDirection:'row'}}>
+            {/* <View style={{flex:0.2,flexDirection:'row'}}>
                 <View style={{flex:0.7, flexDirection:'row'}}>
                 <Text style={styles.tempText}>{celsiusRedux?celsius:fahrenheit}°</Text>
                 <Text style={styles.tempTypeText}>{weatherType}</Text>
@@ -71,10 +71,10 @@ const WeatherScreenBottom = () => {
                 <Text style={styles.tempMinMaxText}>{celsiusRedux?celsiusMax:fahrenheitMax}°/</Text>
                 <Text style={styles.tempMinMaxText}>{celsiusRedux?celsiusMin:fahrenheitMin}°</Text>
                 </View>
-            </View>
-            <View style={{flex:0.8}}>
+            </View> */}
+            {/* <View style={{flex:0.8}}> */}
             <WeatherDayList/>
-            </View>
+            {/* </View> */}
             
         </View>
     )

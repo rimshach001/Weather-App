@@ -54,8 +54,50 @@ const WeatherScreenCenter = () => {
     }, [weatherType, Data]);
 
     return (
-        <View style={styles.center}>
-            <Image style={styles.pic} source={clearType ? images.clear : sunnyType ? images.sunny : images.clouds} />
+        // <View style={styles.center}>
+        //     <Image style={styles.pic} source={clearType ? images.clear : sunnyType ? images.sunny : images.clouds} />
+        // </View>
+        <View style={styles.center}> 
+        <View style={styles.box}>
+            <View style={styles.boxes}>
+                <View style={styles.boxesImg}>
+                <Image source={images.humidity} style={styles.boxPic}/>
+                </View>
+                <View style={styles.boxesPart}>
+                <Text style={styles.boxText}>Humidity</Text>
+                <Text style={styles.boxText}>{Data?.data?.list[0]?.main?.humidity}%</Text>
+                </View>
+            </View>
+            <View style={styles.boxes}>
+                <View style={styles.boxesImg}>
+                <Image source={images.pressure} style={styles.boxPic}/>
+                </View>
+                <View style={styles.boxesPart}>
+                <Text style={styles.boxText}>Pressure</Text>
+                <Text style={styles.boxText}>{Data?.data?.list[0]?.main?.pressure} hpa</Text>
+                </View>
+            </View>
+        </View>
+        <View style={styles.box}>
+        <View style={styles.boxes}>
+                <View style={styles.boxesImg}>
+                <Image source={images.wind} style={styles.boxPic}/>
+                </View>
+                <View style={styles.boxesPart}>
+                <Text style={styles.boxText}>Wind Speed</Text>
+                <Text style={styles.boxText}>{((Data?.data?.list[0]?.wind?.speed)*3.6).toFixed(1)} km/h</Text>
+                </View>
+            </View>
+            <View style={styles.boxes}>
+                <View style={styles.boxesImg}>
+                <Image source={images.visibility} style={styles.boxPic}/>
+                </View>
+                <View style={styles.boxesPart}>
+                <Text style={styles.boxText}>Visibility</Text>
+                <Text style={styles.boxText}>{(Data?.data?.list[0]?.visibility)/1000} km</Text>
+                </View>
+            </View>
+        </View>
         </View>
     )
 }

@@ -3,39 +3,53 @@ import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Color from '../../theme/Color';
 const styles = StyleSheet.create({
    
     bottom:{
-        flex:0.6,
+        // flex:0.6,
         height: '100%',
         width: '100%',
+        // backgroundColor:Color.purple
+        
         
     },
-    renderitems:{
+    renderitemsHourly:{
         flexDirection:'column',
          height:wp(25),
          width:wp(23),
           alignItems:'center',
-          borderWidth:wp(0.5),
+        //   borderWidth:wp(0.5),
           borderRadius:wp(4),
           marginHorizontal:wp(1),
-          borderColor:'white',
-          marginVertical:wp(1)
+        //   borderColor:Color.white,
+          marginVertical:wp(1),
+          backgroundColor:Color.purple1
         },
-        weeklyRender:{
 
+        renderitemsWeekly:{
+            flexDirection:'row',
+            height:wp(15),
+            width:wp(90),
+             alignItems:'center',
+            //  borderWidth:wp(0.5),
+             borderRadius:wp(4),
+           //   marginHorizontal:wp(1),
+            //  borderColor:Color.white,
+             marginVertical:wp(1),
+             backgroundColor:Color.purple1
         },
         listText:{
-            color:'white',
+            color:Color.white,
             // marginBottom:wp(.5)
         },
         listTextDay:{
-            color:'white',
+            color:Color.white,
             fontSize:wp(4),
             paddingHorizontal:wp(3)
         },
         listTextTime:{
-            color:'white',
+            color:Color.white,
             fontSize:wp(4.5),
             paddingHorizontal:wp(3)
         },
@@ -43,13 +57,37 @@ const styles = StyleSheet.create({
             marginTop:wp(1),
             width:wp(10),
             height:wp(10),
-            // justifyContent:'center',
-            // backgroundColor:'red'
+        },
+        picsListWeekly:{
+            marginTop:wp(1),
+            width:wp(10),
+            height:wp(10),
+            alignItems:'center',
+            justifyContent:'center'
         },
         dayNames:{
-            color:'white',
+            color:Color.white,
+            fontSize:wp(6),
+            marginLeft:wp(1),
+            fontWeight:'bold'
+        },
+        weatherName:{
+            color:Color.white,
             fontSize:wp(5),
-            marginLeft:wp(1)
+            marginLeft:wp(1),
+            bottom:wp(0.5)
+        },
+        Forecast1:{
+            // backgroundColor:Color.purple1,
+            borderRadius:wp(4),
+            marginTop:wp(2),
+            paddingHorizontal:wp(4),
+        },
+        Forecast2:{
+            // backgroundColor:Color.purple1,
+            borderRadius:wp(4),
+            marginTop:wp(2),
+            paddingHorizontal:wp(4),
         }
 })
 export default styles
