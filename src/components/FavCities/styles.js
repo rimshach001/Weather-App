@@ -20,14 +20,14 @@ const styles = StyleSheet.create({
         // borderWidth: wp(1),
         borderColor: Color.mostLightPurple,
         borderRadius: wp(5),
-        backgroundColor:Color.mostLightPurple,
+        backgroundColor:Color.purple1,
         marginVertical:wp(1),
         marginHorizontal:wp(3),
         flexDirection:'row',
-        height:wp(40)
+        height:wp(30)
     },
     listCityName: {
-        fontSize: wp(10),
+        fontSize: wp(8),
         color: Color.white
     },
     listTemp: {

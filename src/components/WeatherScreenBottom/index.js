@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import styles from './styles'
 import FetchData from '../../helpers/api'
@@ -73,6 +73,7 @@ const WeatherScreenBottom = () => {
                 </View>
             </View> */}
             {/* <View style={{flex:0.8}}> */}
+           
             <WeatherDayList/>
             {/* </View> */}
             

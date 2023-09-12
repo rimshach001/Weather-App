@@ -9,12 +9,18 @@ import { Alert } from 'react-native';
 
 function* fetchWeatherData(action) {
     try {
-        console.log(action,"okkk")
-        const data = yield call(getAPI, action.payload);
-        // console.log(data.data.list[0], "---data of responseee---");
-        // console.log("show city again 1",data)
-        // yield put(weatherapi(data));
-        yield put({type:'WeatherApi', payload:data})
+        if(action==''){
+            Alert.alert("Enter correct city name")
+        }
+        else{
+            console.log(action,"okkk")
+            const data = yield call(getAPI, action.payload);
+            // console.log(data.data.list[0], "---data of responseee---");
+            // console.log("show city again 1",data)
+            // yield put(weatherapi(data));
+            yield put({type:'WeatherApi', payload:data})
+
+        }
     } catch (error) {
         Alert.alert("Enter correct city name")
         // yield put(weathererror(error));

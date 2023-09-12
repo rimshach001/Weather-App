@@ -12,12 +12,8 @@ import images from '../../assets/images/images'
 import Color from '../../theme/Color'
 const WeatherDayList = () => {
     const [data, setData] = useState()
-    const [WeatherType, setWeatherType] = useState()
-    const [temp, setTemp] = useState([])
-    const [selectedItem, setSelecetedItem] = useState()
     const [dailyWeather, setDailyWeather] = useState([]);
     const [todayWeather, setTodayWeather] = useState([]);
-
     const [todayDateString, setTodayDateString] = useState('');
     const today = new Date();
     const celsiusRedux = useSelector((state) => state.data.celsiusIs)
@@ -27,7 +23,7 @@ const WeatherDayList = () => {
         CheckWeather()
     }, [weatherData])
     useEffect(() => {
-        console.log("---days detailss----", dailyWeather);
+        console.log("---days detailss----", dailyWeather?.data);
         //  console.log(dailyWeather["Fri Sep 08 2023"]);
     }, [dailyWeather,todayWeather])
     const CheckWeather = async () => {
@@ -68,25 +64,25 @@ const WeatherDayList = () => {
         return dayOfWeek
     };
     const daysTimes = (days) => {
-        const info = days?.list
-        const allData = [];
-        // console.log(days?.list, "this is data in render list")
-        if (days?.list.length > 0) {
-            days.list.map((item) => {
-                const date = new Date(item.dt_txt);
-                const dateString = date.toDateString();
-                console.log("------itemm------", item)
-                if (!allData[date]) {
-                    allData[date] = [];
-                }
-                allData[dateString]?.push(item);
-            })
-            console.log(allData, "yessData");
-            return allData
+        if (!days || !days.list || days.list.length === 0) {
+          return {};
         }
-
-
-    };
+      
+        const allData = {};
+      
+        days.list.forEach((item) => {
+          const date = new Date(dateForList(item.dt_txt));
+          const dateString = date.toDateString();
+      
+          if (!allData[dateString]) {
+            allData[dateString] = [];
+          }
+          allData[dateString].push(item);
+        });
+      
+        return allData;
+      };
+      
     const todayData = (days) => {
         // if (!data || !Array.isArray(data)) {
         //     return {}; // Handle the case where data is undefined or not an array
@@ -116,36 +112,22 @@ const WeatherDayList = () => {
         const getTime = item;
         if (getTime !== undefined) {
             const timePart = getTime.slice(11, 16);
-            // console.log(item);
-            // console.log(timePart);
             return timePart;
         }
 
     })
-    const onlyDayName = ((item) => {
+    const dateForList = ((item) => {
         const getTime = item;
         if (getTime !== undefined) {
-            const timePart = getTime.slice(0, 3);
+            const timePart = getTime.slice(0, 10);
+            // console.log(item);
+            console.log(timePart,"day namee");
             return timePart;
         }
-        else {
-            return getTime
-        }
-        // console.log(item);
-        // console.log(timePart);
-    })
-    // Filter the data to get today's weather data
-    // const todayData = dailyWeather[currentDate];
-    // console.log(todayData,"----today----");
 
-    // const today = data.filter(item => {
-    //     const date = new Date.toDateString()
-    //     console.log(item.dt_txt.include(date),"888");
-    //     return item.dt_txt.include(date)
-    // })
+    })
     const renderItem = ({ item, index }) => (
         <View style={styles.renderitemsHourly}>
-
             <View style={{ flex: 0.5 }}>
                 <Image style={styles.picsList}
                     source={item?.weather[0]?.main == 'Clear' ? images.clear
@@ -167,6 +149,10 @@ const WeatherDayList = () => {
             </View>
         </View>
     )
+    const dataArray = Object.entries(dailyWeather).map(([date, dataForDate]) => ({
+        date,
+        data: dataForDate[0],
+      }));
     return (
 
         <View style={styles.bottom}>
@@ -193,34 +179,33 @@ const WeatherDayList = () => {
                     <FlatList
                         vertical
                         showsVerticalScrollIndicator={false}
-                        data={dailyWeather["Mon Sep 11 2023"]}
-                        // data={dailyWeather}
-                        keyExtractor={(item) => item[0]}
+                        data={dataArray}
+                        keyExtractor={(item) => item.date}
                         renderItem={({ item, index }) => {
-                            // console.log(item, "rendered data");
+                            const date = item.date;
+                            const data = item.data;
                             return (
                                 <View>
                                     <View style={styles.renderitemsWeekly}>
                                         <View style={{ flexDirection: 'column', flex: 0.6, marginLeft: wp(4) }}>
-                                            <Text style={styles.dayNames}>{calculateDayOfWeek(item.dt)}</Text>
-                                            <Text style={styles.weatherName}>{item?.weather[0]?.main}</Text>
+                                            <Text style={styles.dayNames}>{calculateDayOfWeek(data.dt)}</Text>
+                                            <Text style={styles.weatherName}>{data?.weather[0]?.main}</Text>
                                         </View>
                                         <View style={{
                                             flexDirection: 'column', flex: 0.2, borderRightWidth: wp(0.5), borderRightColor: Color.white
                                             , justifyContent: 'flex-end', alignItems: 'flex-end'
                                         }}>
-                                            <Text style={styles.listText}>{celsiusRedux ? convertToCelsius(item.main.temp_max) : convertToFahrenheit(item.main.temp_max)}°   </Text>
-                                            <Text style={styles.listText}>{celsiusRedux ? convertToCelsius(item.main.temp_min) : convertToFahrenheit(item.main.temp_min)}°   </Text>
+                                            <Text style={styles.listText}>{celsiusRedux ? convertToCelsius(data.main.temp_max) : convertToFahrenheit(data.main.temp_max)}°   </Text>
+                                            <Text style={styles.listText}>{celsiusRedux ? convertToCelsius(data.main.temp_min) : convertToFahrenheit(data.main.temp_min)}°   </Text>
                                         </View>
-                                        <View style={{ flex: 0.2, marginLeft: wp(1) }}>
+                                        <View style={{ flex: 0.2, marginLeft: wp(4) }}>
                                             <Image style={styles.picsListWeekly}
-                                                source={item?.weather[0]?.main == 'Clear' ? images.clear
-                                                    : item?.weather[0]?.main == 'Clouds' ? images.clouds
-                                                        : item?.weather[0]?.main == 'Sunny' ? images.sunny : images.clouds}
+                                                source={data?.weather[0]?.main == 'Clear' ? images.clear
+                                                    : data?.weather[0]?.main == 'Clouds' ? images.clouds
+                                                        : data?.weather[0]?.main == 'Sunny' ? images.sunny : images.clouds}
                                             />
                                         </View>
                                     </View>
-                                    {/* <Text>{item}</Text> */}
                                 </View>
                             )
                         }}

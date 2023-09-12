@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
             width:wp(10),
             height:wp(10),
             alignItems:'center',
-            justifyContent:'center'
+            justifyContent:'center',
+            // backgroundColor:'red'
         },
         dayNames:{
             color:Color.white,
@@ -88,6 +89,7 @@ const styles = StyleSheet.create({
             borderRadius:wp(4),
             marginTop:wp(2),
             paddingHorizontal:wp(4),
+           
         }
 })
 export default styles

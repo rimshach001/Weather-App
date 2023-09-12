@@ -58,33 +58,16 @@ const WeatherScreen = (props) => {
   return (
     <LinearGradient
       colors={[Color.white, Color.white, Color.lightpurple]}
-      start={{ x: 0, y: 5 }} 
-      end={{ x: 0.1, y: 0.1 }}   
+      start={{ x: 0, y: 5 }}
+      end={{ x: 0.1, y: 0.1 }}
       style={{ flex: 1, }}
     >
 
       {Data && (
         <View style={styles.container}>
-          {/* <View style={{ justifyContent: 'center',
-        alignItems: 'center',}}> */}
-          
-          {/* <SearchCity /> */}
-          <WeatherScreenTop  navigation={props.navigation} />
+          <WeatherScreenTop navigation={props.navigation} />
           <WeatherScreenCenter />
           <WeatherScreenBottom />
-          {/* <WeatherDayList/> */}
-        {/* </View> */}
-          {/* <View style={styles.top}>
-            <Text style={styles.areaText}>{areaName}</Text>
-          </View> */}
-          {/* <View style={styles.center}>
-            <Text>{Temp}</Text>
-          </View> */}
-          {/* <View style={styles.bottom}>
-            <View>
-              <Text style={{ fontSize: 10 }}>{celsius}</Text>
-              </View>
-            </View> */}
         </View>
       )}
     </LinearGradient>
