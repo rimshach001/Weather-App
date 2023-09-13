@@ -7,7 +7,7 @@ import Color from '../../theme/Color';
 const styles = StyleSheet.create({
    
     bottom:{
-        // flex:0.6,
+        flex:1,
         height: '100%',
         width: '100%',
         // backgroundColor:Color.purple
@@ -89,6 +89,8 @@ const styles = StyleSheet.create({
             borderRadius:wp(4),
             marginTop:wp(2),
             paddingHorizontal:wp(4),
+            flex:1,
+            // flexGrow:1
            
         }
 })

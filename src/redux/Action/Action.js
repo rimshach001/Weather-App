@@ -6,6 +6,7 @@ export const FavCityName="FavCityName"
 export const FavCityWeather="FavCityWeather"
 export const DelFavCity="DelFavCity"
 export const Fav="Fav"
+export const ClickOnScreen="ClickOnScreen"
 // export const ReqApi='ReqApi'
 export const celsius = () => {
     return {
@@ -48,6 +49,13 @@ export const delFavCity = (error) => {
 export const fav = (error) => {
     return {
         type: Fav,
+        payload:error,
+        
+    }
+}
+export const clickOnScreen = (error) => {
+    return {
+        type: ClickOnScreen,
         payload:error,
         
     }

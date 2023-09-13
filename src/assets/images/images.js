@@ -16,6 +16,8 @@ const images={
     horizantalDots:require('./horizantalDots.png'),
     tick:require('./tick.png'),
     settings:require('./settings.png'),
-    favRed:require('./favRed.png')
+    favRed:require('./favRed.png'),
+    close:require('./close.png'),
+    rain:require('./rain.png')
 }
 export default images

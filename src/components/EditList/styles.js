@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: wp(5),
         // backgroundColor:'red',
-        marginRight:wp(2)
+        marginRight: wp(2)
     },
     dots: {
         height: wp(7),
@@ -23,31 +23,46 @@ const styles = StyleSheet.create({
         paddingVertical: wp(0.3),
         borderBottomWidth: wp(0.2),
         borderBottomColor: Color.white,
-        flexDirection:'row',
-        height:wp(10),
-        width:wp(40),
-        paddingHorizontal:wp(2)
+        flexDirection: 'row',
+        height: wp(10),
+        width: wp(40),
+        paddingHorizontal: wp(2)
+    },
+    closeitem: {
+        paddingVertical: wp(0.3),
+        flexDirection: 'row',
+        height: wp(9),
+        width: wp(40),
+        paddingHorizontal: wp(2)
     },
     itemText: {
         color: Color.white
     },
     modal: {
         // backgroundColor:'grey', 
-        right: wp(6),
+        // right: wp(6),
         // borderWidth: wp(0.5),
         // borderColor: Color.white,
         width: wp(40),
         height: wp(40),
-        top: wp(1),
+        top: wp(4),
         backgroundColor: Color.purple,
         alignItems: 'center',
         justifyContent: 'center',
-        zIndex: 1000
+        zIndex: 1000,
+        marginLeft: wp(55)
+    },
+    close: {
+        height: wp(8),
+        width: wp(8),
+        marginLeft: wp(29),
+        alignItems:'center',
+        justifyContent:'center'
     },
     tempPic: {
         height: wp(5),
         width: wp(5),
-        marginHorizontal:wp(1)
+        marginHorizontal: wp(1)
     }
 
 })

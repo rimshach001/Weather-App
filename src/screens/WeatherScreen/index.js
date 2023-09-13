@@ -14,6 +14,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import WeatherDayList from '../../components/WeatherDaysList'
 import { city, weatherapi } from '../../redux/Action/Action'
 import Color from '../../theme/Color'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 const WeatherScreen = (props) => {
   // const [weather, setweather] = useState()
   // const [Temp, setTemp] = useState()
@@ -56,21 +57,21 @@ const WeatherScreen = (props) => {
 
 
   return (
-    <LinearGradient
-      colors={[Color.white, Color.white, Color.lightpurple]}
-      start={{ x: 0, y: 5 }}
-      end={{ x: 0.1, y: 0.1 }}
-      style={{ flex: 1, }}
-    >
+      <LinearGradient
+        colors={[Color.white, Color.white, Color.lightpurple]}
+        start={{ x: 0, y: 5 }}
+        end={{ x: 0.1, y: 0.1 }}
+        style={{ flex: 1, }}
+      >
 
-      {Data && (
-        <View style={styles.container}>
-          <WeatherScreenTop navigation={props.navigation} />
-          <WeatherScreenCenter />
-          <WeatherScreenBottom />
-        </View>
-      )}
-    </LinearGradient>
+        {Data && (
+          <View style={styles.container}>
+            <WeatherScreenTop navigation={props.navigation} />
+            <WeatherScreenCenter />
+            <WeatherScreenBottom />
+          </View>
+        )}
+      </LinearGradient>
   )
 }
 

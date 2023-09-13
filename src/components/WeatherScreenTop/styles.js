@@ -35,17 +35,19 @@ const styles = StyleSheet.create({
         // backgroundColor:'red',
         // marginTop:wp(3),
         // bottom:wp(5)   
+        // flex:0.5
     },
     dots:{
         height:wp(6),
         width:wp(6),
         resizeMode:'contain',
-        marginLeft:wp(75),
+        marginLeft:wp(38),
         // alignItems:'flex-end',
         // justifyContent:'flex-end'
         // backgroundColor:'red',
         // marginTop:wp(3),
-        // bottom:wp(5)   
+        // bottom:wp(5) 
+        // flex:0.5  
     },
     tempPic:{
         height:wp(8),

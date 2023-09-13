@@ -72,10 +72,9 @@ const WeatherScreenBottom = () => {
                 <Text style={styles.tempMinMaxText}>{celsiusRedux?celsiusMin:fahrenheitMin}°</Text>
                 </View>
             </View> */}
-            {/* <View style={{flex:0.8}}> */}
-           
+            <View style={{flex:1}}>
             <WeatherDayList/>
-            {/* </View> */}
+            </View>
             
         </View>
     )

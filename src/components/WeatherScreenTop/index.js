@@ -4,13 +4,13 @@ import FetchData from '../../helpers/api'
 import styles from './styles'
 import images from '../../assets/images/images'
 import { useSelector, useDispatch } from 'react-redux'
-import { celsius, City, favCityname, fav,delFavCity } from '../../redux/Action/Action'
+import { celsius, City, favCityname, fav, delFavCity } from '../../redux/Action/Action'
 const WeatherScreenTop = ({ navigation }) => {
   const [weatherType, setWeatherType] = useState()
   const [Temp, setTemp] = useState()
   // const [celsius, setCelsius] = useState()
   const [areaName, setAreaName] = useState()
-  const [data, setData] = useState()
+  const [RainType, setRainType] = useState()
   const [Val, setVal] = useState(false)
   const [sunnyType, setSunnyType] = useState(false)
   const [clearType, setClearType] = useState(false)
@@ -31,9 +31,12 @@ const WeatherScreenTop = ({ navigation }) => {
   // const cityName = useSelector((state) => state.data.city)
   // console.log(cityName,"---------city-------");
   const Data = useSelector((state) => state.data.api);
+  const FavData = useSelector((state) => state.data.favCities);
+  const isCityFavorite = FavData.some((city) => city.city.id === Data?.data?.city?.id);
+  console.log(isCityFavorite, "plllll");
   useEffect(() => {
     CheckWeather()
-  }, [areaName, Data,FavIs])
+  }, [areaName, Data, FavIs])
   const CheckWeather = async () => {
     try {
       // const Info = await FetchData()
@@ -83,6 +86,9 @@ const WeatherScreenTop = ({ navigation }) => {
     else if (weatherType == 'Sunny') {
       setSunnyType(true)
     }
+    else if (weatherType == 'Rain') {
+      setRainType(true)
+    }
     else {
       console.log(weatherType);
     }
@@ -99,8 +105,8 @@ const WeatherScreenTop = ({ navigation }) => {
   })
   const favBtn = (() => {
     // if (FavIs == false) {
-      dispatch(favCityname(Data?.data))
-      dispatch(fav())
+    dispatch(favCityname(Data?.data))
+    dispatch(fav())
     // }
     // else {
     //   dispatch(delFavCity(Data?.data))
@@ -117,9 +123,9 @@ const WeatherScreenTop = ({ navigation }) => {
   })
   return (
     <View style={styles.top}>
-
-      <View style={{ flex: 0.2, flexDirection: 'row', }}>
-        {FavIs == false ? (
+      <View style={{ flex: 0.2, flexDirection: 'row' }}>
+        <View style={{flex:0.5}} >
+        {(FavIs == false && isCityFavorite == false) ? (
           <TouchableOpacity onPress={favBtn}>
             <Image style={styles.fav} source={images.favorite} />
           </TouchableOpacity>
@@ -128,11 +134,13 @@ const WeatherScreenTop = ({ navigation }) => {
             <Image style={styles.fav} source={images.favRed} />
           </TouchableOpacity>
         )
-
-        }
-        <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+      }
+      </View>
+      <View style={{flex:0.5}} >
+        <TouchableOpacity  onPress={() => navigation.navigate('Settings')}>
           <Image style={styles.dots} source={images.settings} />
         </TouchableOpacity>
+        </View>
         {/* {
           Val == true &&
           (<View style={styles.modal}>
@@ -173,7 +181,7 @@ const WeatherScreenTop = ({ navigation }) => {
         <View style={{ flex: 0.35, }}>
 
           {/* <View style={styles.center}> */}
-          <Image style={styles.pic} source={clearType ? images.clear : sunnyType ? images.sunny : images.clouds} />
+          <Image style={styles.pic} source={clearType ? images.clear : sunnyType ? images.sunny :RainType ? images.rain : images.clouds} />
           {/* </View> */}
           {/* <TouchableOpacity onPress={handleBtn}>
           <Image style={styles.tempPic} source={celsiusRedux?images.fahrenheit:images.celsius} />

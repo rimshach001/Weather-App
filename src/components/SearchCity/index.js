@@ -44,9 +44,9 @@ import {
     heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TextInput, Button, TouchableOpacity, Image, KeyboardAvoidingView } from 'react-native';
 import { connect, useSelector } from 'react-redux';
-import { celsius, city,fav } from '../../redux/Action/Action'
+import { celsius, city, fav } from '../../redux/Action/Action'
 import { useDispatch } from 'react-redux';
 import images from '../../assets/images/images';
 import Color from '../../theme/Color';
@@ -80,16 +80,15 @@ function SearchCity({ navigation }) {
                     </TouchableOpacity>
                 </View>
                 <View>
-
-                    <TextInput style={{
-                        color: Color.white,
-                        width: wp(60), height: wp(8)
-                    }}
-                        placeholder="Search for a city"
-                        placeholderTextColor={Color.white}
-                        value={cityName}
-                        onChangeText={setCityName}
-                    />
+                        <TextInput style={{
+                            color: Color.white,
+                            width: wp(60), height: wp(8)
+                        }}
+                            placeholder="Search for a city"
+                            placeholderTextColor={Color.white}
+                            value={cityName}
+                            onChangeText={setCityName}
+                        />
                 </View>
             </View>
             <View>

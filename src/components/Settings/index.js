@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import styles from './styles'
 import { LinearGradient } from 'expo-linear-gradient';
@@ -6,7 +6,8 @@ import Color from '../../theme/Color'
 import SearchCity from '../SearchCity';
 import EditList from '../EditList/EditList';
 import FavCities from '../FavCities';
-
+import { useDispatch } from 'react-redux';
+import { clickOnScreen } from '../../redux/Action/Action';
 const Settings = (props) => {
   return (
      <LinearGradient
@@ -15,7 +16,7 @@ const Settings = (props) => {
       end={{ x: 0.1, y: 0.1 }}   
       style={{ flex: 1, }}
     >
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container}>
       <View style={{flex:0.1}}>
         <EditList/>
       </View>
@@ -26,9 +27,9 @@ const Settings = (props) => {
         <SearchCity navigation={props.navigation}/>
       </View>
       <View style={{flex:0.7}}>
-        <FavCities/>
+        <FavCities navigation={props.navigation}/>
       </View>
-    </View>
+    </TouchableOpacity>
     </LinearGradient>
   )
 }

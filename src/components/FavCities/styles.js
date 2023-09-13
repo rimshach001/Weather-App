@@ -20,29 +20,37 @@ const styles = StyleSheet.create({
         // borderWidth: wp(1),
         borderColor: Color.mostLightPurple,
         borderRadius: wp(5),
-        backgroundColor:Color.purple1,
-        marginVertical:wp(1),
-        marginHorizontal:wp(3),
-        flexDirection:'row',
-        height:wp(30)
+        backgroundColor: Color.purple1,
+        marginVertical: wp(1),
+        marginHorizontal: wp(3),
+        flexDirection: 'row',
+        height: wp(30)
     },
     listCityName: {
         fontSize: wp(8),
-        color: Color.white
+        color: Color.white,
+        fontWeight:'bold'
     },
     listTemp: {
-        fontSize: wp(7),
-        color: Color.white
-    },
-    listweatherType: {
         fontSize: wp(6),
         color: Color.white
     },
-    pic:{
-        height:wp(20),
-        width:wp(20),
-        resizeMode:'contain'
+    listweatherType: {
+        fontSize: wp(5),
+        color: Color.white
     },
+    pic: {
+        height: wp(20),
+        width: wp(20),
+        resizeMode: 'contain',
+    },
+    favList: {
+        flex: 0.6,
+        flexDirection: 'column',
+        paddingLeft: wp(5),
+        // alignItems:'center',
+        justifyContent:'center'
+    }
 
 })
 export default styles
