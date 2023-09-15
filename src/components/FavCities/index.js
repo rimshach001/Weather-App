@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import styles from './styles'
 import images from '../../assets/images/images'
 import Swipeout from 'react-native-swipeout'
-import { city, delFavCity, fav } from '../../redux/Action/Action'
+import { city, delFavCity, fav, swipeList,curIndex } from '../../redux/Action/Action'
 
 const FavCities = ({ navigation }) => {
   useEffect(() => {
@@ -51,10 +51,12 @@ const FavCities = ({ navigation }) => {
       setVal(true)
     }
   })
-  const handleBtn = ((item) => {
+  const handleBtn = ((item,index) => {
     dispatch(city(item.toLowerCase()));
+    dispatch(swipeList(true))
     navigation.navigate("WeatherScreen")
     setOpenSwipeoutIndex(null)
+    dispatch(curIndex(index))
   })
   const handleDeleteItem = ((item) => {
     dispatch(delFavCity(item))
@@ -77,7 +79,7 @@ const FavCities = ({ navigation }) => {
         backgroundColor='transparent'
         onOpen={() => setOpenSwipeoutIndex(index)}
         close={openSwipeoutIndex !== index}>
-        <TouchableOpacity onPress={() => handleBtn(item?.city?.name)}>
+        <TouchableOpacity onPress={() => handleBtn(item?.city?.name, index)}>
           <View style={styles.listItems} >
             <View style={styles.favList}>
               <Text style={styles.listCityName}>{item?.city?.name}</Text>

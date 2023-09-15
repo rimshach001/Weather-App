@@ -7,7 +7,7 @@ import Color from '../../theme/Color';
 const styles = StyleSheet.create({
    
   container:{
-    marginVertical:wp(6),
+    marginTop:wp(6),
     // alignItems:'center',
     // justifyContent:'center',
     // height:'100%',

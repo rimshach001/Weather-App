@@ -19,6 +19,8 @@ const WeatherScreenTop = ({ navigation, index }) => {
   const ApiData = useSelector((state) => state.data.api);
   const FavData = useSelector((state) => state.data.favCities);
   const Swipedata = useSelector((state) => state.data.swipe);
+  // const Index = useSelector((state) => state.data.index);
+  // console.log(Index, "this is index no----");
   const isCityFavorite = FavData.some((city) => city.city.id === ApiData?.data?.city?.id);
   console.log(isCityFavorite, "plllll");
   useEffect(() => {
@@ -76,7 +78,7 @@ const WeatherScreenTop = ({ navigation, index }) => {
     <View style={styles.top}>
       <View style={{ flex: 0.2, flexDirection: 'row',}}>
         {Swipedata == false && (
-          <View style={{flex:1}}>
+          <View style={{flex:1,flexDirection:'row'}}>
             <View style={{ flex: 0.5 }} >
               {(FavIs == false && isCityFavorite == false) ? (
                 <TouchableOpacity onPress={favBtn}>
@@ -90,7 +92,7 @@ const WeatherScreenTop = ({ navigation, index }) => {
               )
               }
             </View>
-            <View style={{ flex: 0.5 }} >
+            <View style={{ flex: 0.5,}} >
               <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
                 {/* <Image style={styles.dots} source={images.settings} /> */}
                 <Text style={styles.cancelText}>CANCEL</Text>
@@ -129,136 +131,3 @@ const WeatherScreenTop = ({ navigation, index }) => {
   )
 }
 export default WeatherScreenTop
-
-
-// import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native'
-// import React, { useEffect, useState } from 'react'
-// import styles from './styles'
-// import images from '../../assets/images/images'
-// import { useSelector, useDispatch } from 'react-redux'
-// import { celsius, City, favCityname, fav, delFavCity, swipeList } from '../../redux/Action/Action'
-// const WeatherScreenTop = ({ navigation, index }) => {
-//   const [weatherType, setWeatherType] = useState()
-//   const [areaName, setAreaName] = useState()
-//   const [RainType, setRainType] = useState()
-//   const [sunnyType, setSunnyType] = useState(false)
-//   const [clearType, setClearType] = useState(false)
-//   const [celsiuss, setCelsius] = useState()
-//   const celsiusRedux = useSelector((state) => state.data.celsiusIs)
-//   const FavIs = useSelector((state) => state.data.favorite)
-//   const Data = index
-//   console.log(FavIs, "---fav--");
-//   const dispatch = useDispatch()
-//   const ApiData = useSelector((state) => state.data.api);
-//   const FavData = useSelector((state) => state.data.favCities);
-//   const Swipedata = useSelector((state) => state.data.swipe);
-//   const isCityFavorite = FavData.some((city) => city.city.id === ApiData?.data?.city?.id);
-//   console.log(isCityFavorite, "plllll");
-//   useEffect(() => {
-//     CheckWeather()
-//   }, [areaName, ApiData, FavIs, , Data])
-//   const CheckWeather = async () => {
-//     try {
-//       setAreaName(Data?.city?.name)
-//       setWeatherType(Data?.list[0]?.weather[0]?.main)
-//       console.log(weatherType, "now types");
-
-//       const celsius = (Data?.list[0]?.main?.temp - 273.15);
-//       const celsiusApprox = celsius.toFixed(0)
-//       setCelsius(celsiusApprox)
-
-//       const fahren = (Data?.list[0]?.main?.temp - 273.15 * 0.55 + 32);
-//       const fahrenApprox = fahren.toFixed(0)
-//       setfahrenheit(fahrenApprox)
-
-//     }
-//     catch (error) {
-//       console.log(error, "-- error")
-//     }
-//   }
-//   useEffect(() => {
-//     setWeatherType(Data?.list[0]?.weather[0]?.main)
-//     console.log(Data?.list[0]?.weather[0]?.main, "--weather type--")
-//     if (weatherType == 'Clear') {
-//       console.log(weatherType);
-//       setClearType(true)
-//     }
-//     else if (weatherType == 'Sunny') {
-//       setSunnyType(true)
-//     }
-//     else if (weatherType == 'Rain') {
-//       setRainType(true)
-//     }
-//     else {
-//       console.log(weatherType);
-//     }
-//   }, [weatherType, Data]);
-
-//   const favBtn = (() => {
-//     dispatch(favCityname(Data))
-//     dispatch(fav())
-//     // navigation.navigate("settings")
-//     dispatch(swipeList(true))
-//   })
-//   const favBtn1 = (() => {
-//     dispatch(delFavCity(Data))
-//     dispatch(fav(false))
-//     console.log("-----ok---")
-//   })
-//   return (
-//     <View style={styles.top}>
-//       <View style={{ flex: 0.2, flexDirection: 'row',}}>
-//         {Swipedata == false && (
-//           <View style={{flex:1}}>
-//             <View style={{ flex: 0.5 }} >
-//               {(FavIs == false && isCityFavorite == false) ? (
-//                 <TouchableOpacity onPress={favBtn}>
-//                   {/* <Image style={styles.fav} source={images.favorite} /> */}
-//                   <Text style={styles.addText}>ADD</Text>
-//                 </TouchableOpacity>
-//               ) : (
-//                 <TouchableOpacity onPress={favBtn1}>
-//                   <Image style={styles.fav} source={images.favRed} />
-//                 </TouchableOpacity>
-//               )
-//               }
-//             </View>
-//             <View style={{ flex: 0.5 }} >
-//               <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
-//                 {/* <Image style={styles.dots} source={images.settings} /> */}
-//                 <Text style={styles.cancelText}>CANCEL</Text>
-//               </TouchableOpacity>
-//             </View>
-//           </View>
-//         )}
-//         {Swipedata == true && (
-//           <View style={{flex:1, alignItems:'flex-end',justifyContent:'flex-end'}}>
-//               <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
-//                 <Image style={styles.dots} source={images.settings} />
-//               </TouchableOpacity>
-//           </View>
-//         )}
-//       </View>
-//       <View style={{ flex: 0.8, flexDirection: 'row', }}>
-//         <View style={{ flex: 0.65, flexDirection: 'column', marginLeft: 6, }}>
-//           <View>
-//             <ScrollView
-//               horizontal
-//               showsHorizontalScrollIndicator={false}
-//             >
-//               <Text style={styles.areaText}>{areaName}</Text>
-//             </ScrollView>
-//           </View>
-//           <View style={{ flexDirection: 'row' }}>
-//             <Text style={styles.tempText}>{celsiusRedux ? celsiuss : fahrenheit}°</Text>
-//             <Text style={styles.tempTypeText}>{weatherType}</Text>
-//           </View>
-//         </View>
-//         <View style={{ flex: 0.35, }}>
-//           <Image style={styles.pic} source={clearType ? images.clear : sunnyType ? images.sunny : RainType ? images.rain : images.clouds} />
-//         </View>
-//       </View>
-//     </View>
-//   )
-// }
-// export default WeatherScreenTop

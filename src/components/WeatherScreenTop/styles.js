@@ -52,13 +52,14 @@ const styles = StyleSheet.create({
     cancelText: {
         fontSize: wp(4),
         color: Color.white,
-        marginLeft: wp(72),
-        bottom:wp(3),
+        marginLeft: wp(28),
+        // bottom:wp(3),
     },
     addText: {
         height: wp(6),
         fontSize: wp(4.5),
         color: Color.white,
+        // width:wp(20),
         // marginLeft: wp(55),
         // backgroundColor:'blue',
         top:wp(1)

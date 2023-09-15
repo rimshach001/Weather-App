@@ -10,8 +10,16 @@ const styles = StyleSheet.create({
         // backgroundColor: 'red',
     },
     container1: {
-        height: hp(100),
+        height: hp(95),
         width: wp(100),
+    },
+    dotPager:{
+        height:hp(5),
+        width:wp(100),
+        // posiiton:'absolute',
+        backgroundColor:"rgb(0,255,255,0.5)",
+        // bottom:0,
+        // zIndex:999
     },
     top: {
         flex: 0.1,

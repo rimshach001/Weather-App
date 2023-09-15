@@ -8,6 +8,7 @@ export const DelFavCity="DelFavCity"
 export const Fav="Fav"
 export const ClickOnScreen="ClickOnScreen"
 export const SwipeList="SwipeList"
+export const CurIndex="CurIndex"
 
 // export const ReqApi='ReqApi'
 export const celsius = () => {
@@ -65,6 +66,13 @@ export const clickOnScreen = (error) => {
 export const swipeList = (error) => {
     return {
         type: SwipeList,
+        payload:error,
+        
+    }
+}
+export const curIndex = (error) => {
+    return {
+        type: CurIndex,
         payload:error,
         
     }
