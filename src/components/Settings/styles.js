@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     // height:'100%',
     // width:'100%',
     flex:1,
-    marginHorizontal:wp(3)
+    // marginHorizontal:wp(3)
   },
   container1: {
     alignItems: 'flex-end',

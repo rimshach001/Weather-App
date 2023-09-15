@@ -4,6 +4,11 @@ import styles from './styles'
 import images from '../../assets/images/images'
 import { useSelector, useDispatch } from 'react-redux'
 import { celsius, City, favCityname, fav, delFavCity, swipeList } from '../../redux/Action/Action'
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+import { favBtn } from '../Functions/functions'
 const WeatherScreenTop = ({ navigation, index }) => {
   const [weatherType, setWeatherType] = useState()
   const [areaName, setAreaName] = useState()
@@ -11,18 +16,16 @@ const WeatherScreenTop = ({ navigation, index }) => {
   const [sunnyType, setSunnyType] = useState(false)
   const [clearType, setClearType] = useState(false)
   const [celsiuss, setCelsius] = useState()
+  const [fahrenheit, setfahrenheit] = useState()
   const celsiusRedux = useSelector((state) => state.data.celsiusIs)
   const FavIs = useSelector((state) => state.data.favorite)
   const Data = index
-  console.log(FavIs, "---fav--");
+  
   const dispatch = useDispatch()
   const ApiData = useSelector((state) => state.data.api);
   const FavData = useSelector((state) => state.data.favCities);
   const Swipedata = useSelector((state) => state.data.swipe);
-  // const Index = useSelector((state) => state.data.index);
-  // console.log(Index, "this is index no----");
   const isCityFavorite = FavData.some((city) => city.city.id === ApiData?.data?.city?.id);
-  console.log(isCityFavorite, "plllll");
   useEffect(() => {
     CheckWeather()
   }, [areaName, ApiData, FavIs, , Data])
@@ -30,7 +33,6 @@ const WeatherScreenTop = ({ navigation, index }) => {
     try {
       setAreaName(Data?.city?.name)
       setWeatherType(Data?.list[0]?.weather[0]?.main)
-      console.log(weatherType, "now types");
 
       const celsius = (Data?.list[0]?.main?.temp - 273.15);
       const celsiusApprox = celsius.toFixed(0)
@@ -47,7 +49,6 @@ const WeatherScreenTop = ({ navigation, index }) => {
   }
   useEffect(() => {
     setWeatherType(Data?.list[0]?.weather[0]?.main)
-    console.log(Data?.list[0]?.weather[0]?.main, "--weather type--")
     if (weatherType == 'Clear') {
       console.log(weatherType);
       setClearType(true)
@@ -69,16 +70,16 @@ const WeatherScreenTop = ({ navigation, index }) => {
     // navigation.navigate("settings")
     dispatch(swipeList(true))
   })
-  const favBtn1 = (() => {
-    dispatch(delFavCity(Data))
-    dispatch(fav(false))
-    console.log("-----ok---")
-  })
+  // const favBtn1 = (() => {
+  //   dispatch(delFavCity(Data))
+  //   dispatch(fav(false))
+  //   console.log("-----ok---")
+  // })
   return (
     <View style={styles.top}>
-      <View style={{ flex: 0.2, flexDirection: 'row',}}>
+      <View style={{ flex: 0.3, flexDirection: 'row',}}>
         {Swipedata == false && (
-          <View style={{flex:1,flexDirection:'row'}}>
+          <View style={{flex:1,flexDirection:'row',marginTop:wp(3)}}>
             <View style={{ flex: 0.5 }} >
               {(FavIs == false && isCityFavorite == false) ? (
                 <TouchableOpacity onPress={favBtn}>
@@ -86,9 +87,11 @@ const WeatherScreenTop = ({ navigation, index }) => {
                   <Text style={styles.addText}>ADD</Text>
                 </TouchableOpacity>
               ) : (
-                <TouchableOpacity onPress={favBtn1}>
-                  <Image style={styles.fav} source={images.favRed} />
-                </TouchableOpacity>
+                <View></View>
+                // <TouchableOpacity onPress={favBtn1}>
+                //   {/* <Image style={styles.fav} source={images.favRed} /> */}
+                //   <Text style={styles.addText}>ADDED</Text>
+                // </TouchableOpacity>
               )
               }
             </View>
@@ -101,14 +104,14 @@ const WeatherScreenTop = ({ navigation, index }) => {
           </View>
         )}
         {Swipedata == true && (
-          <View style={{flex:1, alignItems:'flex-end',justifyContent:'flex-end'}}>
+          <View style={{flex:1, alignItems:'flex-end',justifyContent:'center'}}>
               <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
                 <Image style={styles.dots} source={images.settings} />
               </TouchableOpacity>
           </View>
         )}
       </View>
-      <View style={{ flex: 0.8, flexDirection: 'row', }}>
+      <View style={{ flex: 0.7, flexDirection: 'row'}}>
         <View style={{ flex: 0.65, flexDirection: 'column', marginLeft: 6, }}>
           <View>
             <ScrollView

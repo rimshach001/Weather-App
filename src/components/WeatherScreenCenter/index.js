@@ -7,7 +7,7 @@ const WeatherScreenCenter = ({index}) => {
     const Data=index
     useEffect(() => {
         setWeatherType(Data?.list[0]?.weather[0]?.main)
-        console.log(Data?.list[0]?.weather[0]?.main, "--weather type--")
+        // console.log(Data?.list[0]?.weather[0]?.main, "--weather type--")
     }, [weatherType, Data]);
 
     return (

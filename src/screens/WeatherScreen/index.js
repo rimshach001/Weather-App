@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, Animated } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import styles from './styles'
 import WeatherScreenTop from '../../components/WeatherScreenTop'
@@ -21,10 +21,12 @@ const WeatherScreen = (props) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const Index = useSelector((state) => state.data.index);
   console.log(Index, "this is index no----");
-  const { onTouchStart, onTouchEnd } = useSwipe(onSwipeLeft, onSwipeRight, 6)
+  const { onTouchStart, onTouchEnd } = useSwipe(onSwipeLeft, onSwipeRight, 3)
+  // const [animatedValue] = useState(new Animated.Value(0));
+
   function onSwipeLeft() {
     console.log('SWIPE_LEFT')
-    if (currentIndex > -1) {
+    if (currentIndex < Fav.length - 1) {
       setCurrentIndex(currentIndex + 1);
       console.log((currentIndex, "index left"));
     }
@@ -36,14 +38,48 @@ const WeatherScreen = (props) => {
       console.log(currentIndex, "index right");
     }
   }
+  // function onSwipeLeft() {
+  //   console.log('SWIPE_LEFT');
+  //   if (currentIndex > -1) {
+  //     Animated.timing(animatedValue, {
+  //       toValue: currentIndex + 1,
+  //       duration: 300, // Adjust the duration as needed
+  //       useNativeDriver: false, // Adjust based on your requirements
+  //     }).start();
+  //   }
+  // }
+
+  // function onSwipeRight() {
+  //   console.log('SWIPE_RIGHT');
+  //   if (currentIndex > 0) {
+  //     Animated.timing(animatedValue, {
+  //       toValue: currentIndex - 1,
+  //       duration: 300, // Adjust the duration as needed
+  //       useNativeDriver: false, // Adjust based on your requirements
+  //     }).start();
+  //   }
+  // }
+  // const handleAnimatedValueUpdate = (value) => {
+  //   // Handle animated value updates here
+  //   console.log('Animated value updated:', value);
+  //   setCurrentIndex(Math.round(value));
+  //   // Add your custom logic here
+  // };
   useEffect(() => {
+    console.log(Index, "this is num");
     setCurrentIndex(Index)
+    // const listenerId = animatedValue.addListener((value) => {
+    //   handleAnimatedValueUpdate(value.value);
+    // });
   }, [])
   useEffect(() => {
-    console.log("heelo");
+    // console.log("heelo");
   }, [currentIndex]);
+  // const animatedStyle = {
+  //   transform: [{ translateY: 0 }],
+  // };
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider style={{backgroundColor:Color.mostLightPurple}}>
       <LinearGradient
         colors={[Color.white, Color.white, Color.lightpurple]}
         start={{ x: 0, y: 5 }}
@@ -51,18 +87,15 @@ const WeatherScreen = (props) => {
         style={{ flex: 1, }}
       >
         {Swipedata && (
-          <View>
+          <View
+          // style={animatedStyle}
+          >
+
             {/* <Swiper
               loop={false}
               index={currentIndex}
-              onIndexChanged={(index) => {
-                if (index < currentIndex) {
-                  onSwipeLeft()
-                } else if (index > currentIndex) {
-                  onSwipeRight();
-                }
-              }}> */}
-            <ScrollView onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+              > */}
+            <ScrollView showsVerticalScrollIndicator={false} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
               <View style={styles.container1}>
                 <WeatherScreenTop navigation={props.navigation} index={Fav[currentIndex]} />
                 <WeatherScreenCenter data={Fav} index={Fav[currentIndex]} />
@@ -71,15 +104,7 @@ const WeatherScreen = (props) => {
             </ScrollView>
 
             {/* </Swiper> */}
-            <View style={styles.dotPager}>
-              <Dots
-                length={Fav.length}
-                active={currentIndex}
-                activeColor={Color.purple1}
-                passiveColor={Color.white}
-                size={5}
-              />
-            </View>
+
           </View>
         )}
         {(Data && Swipedata !== true) && (
@@ -90,6 +115,15 @@ const WeatherScreen = (props) => {
           </View>
         )}
       </LinearGradient>
+      <View style={styles.dotPager}>
+        <Dots
+          length={Fav.length}
+          active={currentIndex}
+          activeColor={Color.purple1}
+          passiveColor={Color.white}
+          size={5}
+        />
+      </View>
     </SafeAreaProvider>
 
   )

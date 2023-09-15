@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         marginVertical: wp(1),
         marginHorizontal: wp(3),
         flexDirection: 'row',
-        height: wp(30)
+        height: wp(25)
     },
     listCityName: {
         fontSize: wp(8),
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         color: Color.white
     },
     listweatherType: {
-        fontSize: wp(5),
+        fontSize: wp(4),
         color: Color.white
     },
     pic: {

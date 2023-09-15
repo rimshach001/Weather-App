@@ -22,22 +22,22 @@ const WeatherDayList = ({propData}) => {
         CheckWeather()
     }, [weatherData])
     useEffect(() => {
-        console.log("---days detailss----", dailyWeather?.data);
+        // console.log("---days detailss----", dailyWeather?.data);
     }, [dailyWeather, todayWeather])
     const CheckWeather = async () => {
         try {
             setData(weatherData?.list)
-            console.log(weatherData?.list, "show lists");
+            // console.log(weatherData?.list, "show lists");
 
             const Data1 = daysTimes(weatherData);
             setDailyWeather(Data1);
 
             setTodayDateString(today.toDateString());
-            console.log(dailyWeather);
+            // console.log(dailyWeather);
 
             const TodayData = todayData(weatherData)
             setTodayWeather(TodayData)
-            console.log("---days details----", todayWeather)
+            // console.log("---days details----", todayWeather)
         }
         catch (error) {
             console.log(error, " error")
@@ -109,7 +109,7 @@ const WeatherDayList = ({propData}) => {
         if (getTime !== undefined) {
             const timePart = getTime.slice(0, 10);
             // console.log(item);
-            console.log(timePart, "day namee");
+            // console.log(timePart, "day namee");
             return timePart;
         }
     })

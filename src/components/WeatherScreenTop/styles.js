@@ -38,10 +38,11 @@ const styles = StyleSheet.create({
         // flex:0.5
     },
     dots: {
-        height: wp(6),
-        width: wp(6),
+        height: wp(7),
+        width: wp(7),
         resizeMode: 'contain',
-        marginLeft: wp(38),
+        marginLeft: wp(35),
+        marginRight:wp(3),
         // alignItems:'flex-end',
         // justifyContent:'flex-end'
         // backgroundColor:'red',
@@ -50,19 +51,21 @@ const styles = StyleSheet.create({
         // flex:0.5  
     },
     cancelText: {
-        fontSize: wp(4),
+        fontSize: wp(4.5),
         color: Color.white,
-        marginLeft: wp(28),
+        marginLeft: wp(25),
+        fontWeight:'bold'
         // bottom:wp(3),
     },
     addText: {
         height: wp(6),
-        fontSize: wp(4.5),
+        fontSize: wp(5),
         color: Color.white,
         // width:wp(20),
-        // marginLeft: wp(55),
+        marginLeft: wp(3),
         // backgroundColor:'blue',
-        top:wp(1)
+        top:wp(1),
+        fontWeight:'bold'
         // marginBottom:wp(3)
     },
     tempPic: {
@@ -99,7 +102,7 @@ const styles = StyleSheet.create({
     },
     tempTypeText: {
         fontSize: wp(5),
-        marginTop: wp(2),
+        marginTop: wp(3),
         color: Color.white,
         // marginLeft:wp(10)
         // marginRight:wp(17)

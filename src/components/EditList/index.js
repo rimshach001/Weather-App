@@ -4,7 +4,6 @@ import images from '../../assets/images/images'
 import styles from './styles'
 import { useDispatch, useSelector } from 'react-redux'
 import { celsius, swipeList } from '../../redux/Action/Action'
-
 const EditList = ({ navigation }) => {
   const [Val, setVal] = useState(false)
   const [showModal, setShowModal] = useState(false);
@@ -37,25 +36,27 @@ const EditList = ({ navigation }) => {
         visible={showModal}
         onRequestClose={closeModal}
       >
-        <TouchableWithoutFeedback onPress={closeModal}>
+       
           <View style={styles.modal}>
-            <TouchableOpacity onPress={closeModal} style={styles.closeitem}>
+            {/* <TouchableOpacity onPress={closeModal} style={styles.closeitem}>
               <Image style={styles.close} source={images.close} />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity>
-              <TouchableOpacity style={styles.items} onPress={NavigateToFavList}>
+              <TouchableOpacity style={styles.items} >
                 <Text style={styles.itemText}>Fav List</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.items} onPress={handleBtn}>
                 <Text style={styles.itemText}>Celsius</Text>
                 {celsiusRedux && <Image style={styles.tempPic} source={images.tick} />}
               </TouchableOpacity>
-              <TouchableOpacity style={styles.items} onPress={handleBtn}>
+              <TouchableOpacity style={styles.itemlast} onPress={handleBtn}>
                 <Text style={styles.itemText}>Fahrenheit</Text>
                 {!celsiusRedux && <Image style={styles.tempPic} source={images.tick} />}
               </TouchableOpacity>
             </TouchableOpacity>
           </View>
+          <TouchableWithoutFeedback onPress={closeModal}>
+          <View style={{flex:1}}></View>
         </TouchableWithoutFeedback>
       </Modal>
     </View>

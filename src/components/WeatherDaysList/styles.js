@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         Forecast1:{
             // backgroundColor:Color.purple1,
             borderRadius:wp(4),
-            marginTop:wp(2),
+            // marginTop:wp(0.5),
             paddingHorizontal:wp(4),
         },
         Forecast2:{

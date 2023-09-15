@@ -17,7 +17,7 @@ const FavCities = ({ navigation }) => {
   const favorite = useSelector((state) => state.data.favCities)
   const celsiusRedux = useSelector((state) => state.data.celsiusIs)
   const dispatch = useDispatch()
-  console.log(favorite, "data of fav citiesss")
+  // console.log(favorite, "data of fav citiesss")
   const Data = useSelector((state) => state.data.api);
   const convertCelsius = ((item) => {
      const get= item - 273.15

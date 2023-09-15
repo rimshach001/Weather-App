@@ -1,16 +1,5 @@
-export const Celsius="CELSIUS"
-export const City="City"
-export const WeatherApi="WeatherApi"
-export const WeatherError="WeatherError"
-export const FavCityName="FavCityName"
-export const FavCityWeather="FavCityWeather"
-export const DelFavCity="DelFavCity"
-export const Fav="Fav"
-export const ClickOnScreen="ClickOnScreen"
-export const SwipeList="SwipeList"
-export const CurIndex="CurIndex"
+import {Celsius,City,WeatherApi,WeatherError,Fav,FavCityName,DelFavCity,ClickOnScreen,SwipeList,CurIndex } from "../Contants"
 
-// export const ReqApi='ReqApi'
 export const celsius = () => {
     return {
         type: Celsius,

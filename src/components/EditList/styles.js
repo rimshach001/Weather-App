@@ -8,9 +8,10 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'flex-end',
         justifyContent: 'center',
-        marginTop: wp(5),
+        marginTop: wp(8),
         // backgroundColor:'red',
-        marginRight: wp(2)
+        marginRight: wp(2),
+        // marginHorizontal:wp(3)
     },
     dots: {
         height: wp(7),
@@ -21,12 +22,23 @@ const styles = StyleSheet.create({
     },
     items: {
         paddingVertical: wp(0.3),
-        borderBottomWidth: wp(0.2),
+        borderBottomWidth: wp(0.18),
         borderBottomColor: Color.white,
         flexDirection: 'row',
         height: wp(10),
         width: wp(40),
-        paddingHorizontal: wp(2)
+        paddingHorizontal: wp(2),
+        paddingTop:wp(2)
+    },
+    itemlast:{
+        paddingVertical: wp(0.3),
+        // borderBottomWidth: wp(0.18),
+        // borderBottomColor: Color.white,
+        flexDirection: 'row',
+        height: wp(10),
+        width: wp(40),
+        paddingHorizontal: wp(2),
+        paddingTop:wp(2)
     },
     closeitem: {
         paddingVertical: wp(0.3),
@@ -44,13 +56,15 @@ const styles = StyleSheet.create({
         // borderWidth: wp(0.5),
         // borderColor: Color.white,
         width: wp(40),
-        height: wp(40),
-        top: wp(4),
+        height: wp(30),
+        top: wp(21.5),
+        // right:wp(5),
         backgroundColor: Color.purple,
         alignItems: 'center',
         justifyContent: 'center',
         zIndex: 1000,
-        marginLeft: wp(55)
+        marginLeft: wp(55),
+        borderRadius:wp(3)
     },
     close: {
         height: wp(8),
