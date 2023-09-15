@@ -23,7 +23,7 @@ const WeatherScreen = (props) => {
   console.log(Index, "this is index no----");
   const { onTouchStart, onTouchEnd } = useSwipe(onSwipeLeft, onSwipeRight, 3)
   // const [animatedValue] = useState(new Animated.Value(0));
-
+console.log("fav", Fav);
   function onSwipeLeft() {
     console.log('SWIPE_LEFT')
     if (currentIndex < Fav.length - 1) {
