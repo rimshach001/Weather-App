@@ -1,5 +1,4 @@
-import { Fahrenheit, Celsius, City, WeatherApi, WeatherError, FavCityName, DelFavCity, Fav, ClickOnScreen } from "../Action/Action";
-
+import { Fahrenheit, Celsius, City, WeatherApi, WeatherError, FavCityName, DelFavCity, Fav, ClickOnScreen, SwipeList } from "../Action/Action";
 const initialState = {
     celsiusIs: true,
     city: '',
@@ -7,7 +6,8 @@ const initialState = {
     error: null,
     favCities: [],
     favorite: false,
-    click:false
+    click: false,
+    swipe: true
     // fahrenheitIs:false
 }
 
@@ -53,13 +53,17 @@ export default function Reducer(state = initialState, action) {
                 ...state,
                 favorite: action.payload,
             };
-            case ClickOnScreen:
-                return {
-                    ...state,
-                    click: action.payload,
-                };
+        case ClickOnScreen:
+            return {
+                ...state,
+                click: action.payload,
+            };
+        case SwipeList:
+            return {
+                ...state,
+                swipe: action.payload,
+            };
         default:
             return state;
     }
 }
-

@@ -1,4 +1,4 @@
-export const Celsius="Celsius"
+export const Celsius="CELSIUS"
 export const City="City"
 export const WeatherApi="WeatherApi"
 export const WeatherError="WeatherError"
@@ -7,6 +7,8 @@ export const FavCityWeather="FavCityWeather"
 export const DelFavCity="DelFavCity"
 export const Fav="Fav"
 export const ClickOnScreen="ClickOnScreen"
+export const SwipeList="SwipeList"
+
 // export const ReqApi='ReqApi'
 export const celsius = () => {
     return {
@@ -56,6 +58,13 @@ export const fav = (error) => {
 export const clickOnScreen = (error) => {
     return {
         type: ClickOnScreen,
+        payload:error,
+        
+    }
+}
+export const swipeList = (error) => {
+    return {
+        type: SwipeList,
         payload:error,
         
     }

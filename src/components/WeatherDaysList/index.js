@@ -1,6 +1,5 @@
-import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, Image} from 'react-native'
 import React, { useEffect, useState } from 'react'
-import FetchData from '../../helpers/api'
 import { FlatList } from 'react-native'
 import { useSelector } from 'react-redux'
 import {
@@ -10,35 +9,33 @@ import {
 import styles from './styles'
 import images from '../../assets/images/images'
 import Color from '../../theme/Color'
-import { GestureHandlerRootView } from 'react-native-gesture-handler'
-const WeatherDayList = () => {
+const WeatherDayList = ({propData}) => {
     const [data, setData] = useState()
     const [dailyWeather, setDailyWeather] = useState([]);
     const [todayWeather, setTodayWeather] = useState([]);
     const [todayDateString, setTodayDateString] = useState('');
     const today = new Date();
     const celsiusRedux = useSelector((state) => state.data.celsiusIs)
-    const weatherData = useSelector((state) => state.data.api);
+    const weatherData=propData
     const city = useSelector((state) => state.data.city)
     useEffect(() => {
         CheckWeather()
     }, [weatherData])
     useEffect(() => {
         console.log("---days detailss----", dailyWeather?.data);
-        //  console.log(dailyWeather["Fri Sep 08 2023"]);
     }, [dailyWeather, todayWeather])
     const CheckWeather = async () => {
         try {
-            setData(weatherData?.data?.list)
-            console.log(weatherData?.data?.list, "show lists");
+            setData(weatherData?.list)
+            console.log(weatherData?.list, "show lists");
 
-            const Data1 = daysTimes(weatherData?.data);
+            const Data1 = daysTimes(weatherData);
             setDailyWeather(Data1);
 
             setTodayDateString(today.toDateString());
             console.log(dailyWeather);
 
-            const TodayData = todayData(weatherData?.data)
+            const TodayData = todayData(weatherData)
             setTodayWeather(TodayData)
             console.log("---days details----", todayWeather)
         }
@@ -85,27 +82,18 @@ const WeatherDayList = () => {
     };
 
     const todayData = (days) => {
-        // if (!data || !Array.isArray(data)) {
-        //     return {}; // Handle the case where data is undefined or not an array
-        // }
-        // else {
         const allData = {};
         if (days?.list.length > 0) {
-            // const today = new Date(); 
-            // const todayDateString = today.toDateString();
             days?.list.map((item) => {
                 const date = new Date(item.dt_txt);
                 const dateString = date.toDateString();
-                // console.log(dateString,)
                 if (todayDateString === dateString) {
                     if (!allData[dateString]) {
                         allData[dateString] = [];
                     }
                     allData[dateString]?.push(item);
                 }
-                // console.log(allData[dateString], "999")
             });
-            // console.log(allData, "-------all-------")
             return allData;
         }
     };
@@ -136,9 +124,6 @@ const WeatherDayList = () => {
                 />
             </View>
             <View style={{ flex: 0.25, alignItems: 'center' }}>
-                {/* <Text style={styles.listTextDay}>
-                    {calculateDayOfWeek(item.dt)}
-                </Text> */}
                 <Text style={styles.listTextTime}>
                     {timeOnly(item.dt_txt)}
                 </Text>
@@ -155,7 +140,7 @@ const WeatherDayList = () => {
     }));
     return (
 
-        <ScrollView style={styles.bottom}>
+        <View style={styles.bottom}>
             <View style={styles.Forecast1}>
                 <Text style={{ fontSize: wp(5), color: 'white', marginLeft: wp(2), fontWeight: 'bold' }}>Hourly Forecast</Text>
                 {todayWeather ?
@@ -165,9 +150,6 @@ const WeatherDayList = () => {
                         data={todayWeather[todayDateString]}
                         renderItem=
                         {renderItem}
-                    // {({ item }) => (
-                    //     <Text style={{ fontSize: 20 }}>{item.weather[0].main}</Text>
-                    // )}
                     />
                     :
                     <Text style={{ color: Color.white, alignItems: 'center', justifyContent: 'center' }}>Loading...</Text>
@@ -217,8 +199,7 @@ const WeatherDayList = () => {
 
 
             </View>
-            {/* </View> */}
-        </ScrollView>
+        </View>
     )
 }
 

@@ -1,52 +1,11 @@
-// import { View, Text, TouchableOpacity, TextInput } from 'react-native'
-// import React, { useEffect, useState } from 'react'
-// import { useDispatch,useSelector } from 'react-redux'
-// import { city } from '../../redux/Action/Action'
-// import FetchData from '../../helpers/api'
-// const SearchCity = () => {
-//     const [areaName, setAreaName] = useState()
-//     const dispatch = useDispatch()
-//     const cityName = useSelector((state) => state.data.data.city);
-//     useEffect(() => {
-//         CheckWeather()
-//       }, [])
-//       const CheckWeather = async () => {
-//         try {
-//           const Info = await FetchData()
-//           // const Info= useSelector((state)=>state.data.data.weather)
-//           setAreaName(Info.city.name)
-//         }
-//         catch (error) {
-//           console.log(error, " error")
-//         }
-//       }
-//     // const [cityNameInput, setCityNameInput] = useState()
-//     const handleSearch = (() => {
-//         dispatch(city(cityName))
-//         console.log(cityName,"----city----");
-//     })
-//     return (
-//         <View>
-//             <TouchableOpacity onPress={(() => handleSearch())}>
-//                 <TextInput
-//                     style={{ borderWidth: 1, padding: 10 }}
-//                     placeholder="Enter city name"
-//                     value={cityName}
-//                     onChangeText={(text) => dispatch(city(text))}
-//                 />
-//             </TouchableOpacity>
-//         </View>
-//     )
-// }
-// export default SearchCity
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, TouchableOpacity, Image, KeyboardAvoidingView } from 'react-native';
+import { View, Text, TextInput, Button, TouchableOpacity, Image, KeyboardAvoidingView, Alert } from 'react-native';
 import { connect, useSelector } from 'react-redux';
-import { celsius, city, fav } from '../../redux/Action/Action'
+import { celsius, city, fav, searchNew, swipeList } from '../../redux/Action/Action'
 import { useDispatch } from 'react-redux';
 import images from '../../assets/images/images';
 import Color from '../../theme/Color';
@@ -55,16 +14,15 @@ function SearchCity({ navigation }) {
     const [cityName, setCityName] = useState('');
     const dispatch = useDispatch()
     const celsiusRedux = useSelector((state) => state.data.celsiusIs)
+    const api=useSelector((state)=>state.data.api)
     const handleSearch = () => {
         dispatch(city(cityName.toLowerCase()));
         dispatch(fav(false))
+        dispatch(swipeList(false))
+        setCityName('')
+       
         navigation.navigate("WeatherScreen")
     };
-    const handleBtn = (() => {
-        console.log("okk");
-        dispatch(celsius())
-        // setData(celsiusRedux)
-    })
     return (
         <View >
             <View style={{
@@ -80,23 +38,20 @@ function SearchCity({ navigation }) {
                     </TouchableOpacity>
                 </View>
                 <View>
-                        <TextInput style={{
-                            color: Color.white,
-                            width: wp(60), height: wp(8)
-                        }}
-                            placeholder="Search for a city"
-                            placeholderTextColor={Color.white}
-                            value={cityName}
-                            onChangeText={setCityName}
-                        />
+                    <TextInput style={{
+                        color: Color.white,
+                        width: wp(60), height: wp(8)
+                    }}
+                        placeholder="Search for a city"
+                        placeholderTextColor={Color.white}
+                        value={cityName}
+                        onChangeText={setCityName}
+                        onSubmitEditing={handleSearch}
+                    />
                 </View>
             </View>
             <View>
-
             </View>
-            {/* <TouchableOpacity onPress={handleBtn}>
-                <Image style={styles.tempPic} source={celsiusRedux ? images.fahrenheit : images.celsius} />
-            </TouchableOpacity> */}
         </View>
     );
 }

@@ -8,17 +8,17 @@ const stack = createStackNavigator();
 const AppNavigation = () => {
     return (
         <NavigationContainer>
-            <stack.Navigator initialRouteName={WeatherScreen} >
-                <stack.Screen name="WeatherScreen"
-                    options={{
-                        headerShown: false
-                    }}
-                    component={WeatherScreen} />
+            <stack.Navigator initialRouteName={Settings} >
                 <stack.Screen name="Settings"
                     options={{
                         headerShown: false
                     }}
                     component={Settings} />
+                <stack.Screen name="WeatherScreen"
+                    options={{
+                        headerShown: false
+                    }}
+                    component={WeatherScreen} />
             </stack.Navigator>
         </NavigationContainer>
     )

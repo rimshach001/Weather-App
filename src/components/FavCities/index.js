@@ -10,6 +10,8 @@ const FavCities = ({ navigation }) => {
   useEffect(() => {
 
   }, [favorite])
+  
+  const [openSwipeoutIndex, setOpenSwipeoutIndex] = useState(null);
   const [sunnyType, setSunnyType] = useState(false)
   const [clearType, setClearType] = useState(false)
   const favorite = useSelector((state) => state.data.favCities)
@@ -52,10 +54,12 @@ const FavCities = ({ navigation }) => {
   const handleBtn = ((item) => {
     dispatch(city(item.toLowerCase()));
     navigation.navigate("WeatherScreen")
+    setOpenSwipeoutIndex(null)
   })
   const handleDeleteItem = ((item) => {
     dispatch(delFavCity(item))
     dispatch(fav(false))
+    setOpenSwipeoutIndex(null)
     console.log("item deleted....");
   })
   const renderItem = ({ item, index }) => {
@@ -70,7 +74,9 @@ const FavCities = ({ navigation }) => {
     return (
       <Swipeout right={swipeBtns}
         autoClose={true}
-        backgroundColor='transparent'>
+        backgroundColor='transparent'
+        onOpen={() => setOpenSwipeoutIndex(index)}
+        close={openSwipeoutIndex !== index}>
         <TouchableOpacity onPress={() => handleBtn(item?.city?.name)}>
           <View style={styles.listItems} >
             <View style={styles.favList}>
