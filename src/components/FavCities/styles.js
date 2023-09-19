@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
         color: Color.white
     },
     pic: {
-        height: wp(20),
-        width: wp(20),
+        height: wp(16),
+        width: wp(16),
         resizeMode: 'contain',
     },
     favList: {
